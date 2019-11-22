@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: nba
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        health-check-path: /actuator/health
+        health-check-interval: 10s
+        instance-id: ${spring.application.name}
+    config:
+      fail-fast: true #是否启动快速失败功能，功能开启则优先判断config server是否正常
+      name: ${spring.application.name}
+      profile: dev
+      discovery:
+        enabled: true
+        service-id: config
+    bus:
+      enabled: true
+      trace:
+        enabled: true
